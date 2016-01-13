@@ -1,0 +1,435 @@
+
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+    border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+    display: none;
+}
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 50px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+    padding: 20px;
+}
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+.main .page-header {
+    margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+}
+/***
+Portlets
+***/
+.portlet  {
+    clear: both;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding: 0px;
+}
+
+.portlet-title {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.portlet-title:after,
+.portlet-title:before {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.portlet-title:after {
+    clear: both;
+}
+
+.portlet-title .caption {
+    float: left;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 7px;
+}
+
+.portlet-body {
+    clear: both;
+    padding: 0;
+}
+
+.portlet-body.light-blue, .portlet.light-blue {
+    background-color: #bfd5fa  !important;
+}
+
+.portlet-body.blue, .portlet.blue {
+    background-color: #4b8df8 !important;
+}
+
+.portlet-body.red, .portlet.red {
+    background-color: #e02222 !important;
+}
+
+.portlet-body.yellow, .portlet.yellow {
+    background-color: #ffb848 !important;
+}
+
+.portlet-body.green, .portlet.green {
+    background-color: #35aa47 !important;
+}
+
+.portlet-body.purple, .portlet.purple {
+    background-color: #852b99 !important;
+}
+
+.portlet-body.light-grey, .portlet.light-grey {
+    background-color: #fafafa !important;
+}
+
+.portlet-body.dark-grey, .portlet.dark-grey {
+    background-color: #555555 !important;
+}
+
+.portlet-body .btn-toolbar {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.portlet-body .btn-group {
+    margin: 0px !important;
+    padding: 0px !important;
+    margin-bottom: 10px !important;
+}
+
+.portlet.bordered {
+    border-left: 2px solid #ddd;
+}
+
+.portlet.box {
+    padding:0px !important
+}
+
+.portlet.box .portlet-title {
+    padding:8px 10px 2px 10px;
+    border-bottom: 1px solid #eee;
+    color: #fff !important;
+}
+
+.portlet.box .portlet-title > .actions > .btn > i {
+    color: #fff !important;
+}
+
+.portlet.box .portlet-title .tools {
+    margin-top: 3px;
+}
+
+/* portlet buttons */
+.portlet.box .portlet-body {
+    background-color: #fff;
+    padding: 10px;
+}
+
+.portlet.box .portlet-title {
+    margin-bottom: 0px;
+}
+
+.portlet.box.blue .portlet-title {
+    background-color: #4b8df8;
+}
+
+.portlet.box.blue {
+    border: 1px solid #b4cef8;
+    border-top: 0;
+}
+
+.portlet.box.red .portlet-title {
+    background-color: #e02222;
+}
+
+.portlet.box.red {
+    border: 1px solid #ef8476;
+    border-top: 0;
+}
+
+.portlet.box.yellow .portlet-title {
+    background-color: #ffb848;
+}
+
+.portlet.box.yellow {
+    border: 1px solid #fccb7e;
+    border-top: 0;
+}
+
+.portlet.box.green .portlet-title {
+    background-color: #35aa47;
+}
+
+.portlet.box.green {
+    border: 1px solid #77e588;
+    border-top: 0;
+}
+
+.portlet.box.purple .portlet-title {
+    background-color: #852b99;
+}
+
+.portlet.box.purple {
+    border: 1px solid #af5cc1;
+    border-top: 0;
+}
+
+.portlet.box.grey .portlet-title {
+    background-color: #555555;
+}
+
+.portlet.box.grey {
+    border: 1px solid #9d9c9c;
+    border-top: 0;
+}
+
+.portlet.box.light-grey .portlet-title {
+    background-color: #aaa;
+}
+
+.portlet.box.light-grey {
+    border: 1px solid #eee;
+    border-top: 0;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #d9edf7;
+}
+
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
+}
+
+#layout-container .container-fluid{
+    padding-left: 0px
+}
+
+.portlet-body > table > tbody > tr >td {
+    padding:5px;
+}
+
+.pagination{
+    margin: 10px;
+}
+
+.sidebar{
+    background-color: #3d3d3d;
+}
+
+.sidebar > ul{
+    padding-top: 30px;
+}
+
+.sidebar > ul > li{
+    border-bottom: 1px solid #7d7d7d !important;
+}
+
+.sidebar > ul > li > a{
+    color: #bdbdbd;
+    padding-left: 40px;
+}
+
+.breadcrumb{
+    background-color: #eee;
+    padding: 8px 15px;
+}
+
+.icon-angle-right:before {
+    content: "\f105";
+    font-family: FontAwesome;
+}
+
+#breadcrumb {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+}
+#breadcrumb .icon {
+    font-size: 14px;
+}
+#breadcrumb li {
+    float: left;
+}
+#breadcrumb li a {
+    color: #FFF;
+    display: block;
+    background: #3498db;
+    text-decoration: none;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px 0 5px;
+    text-align: center;
+    margin-right: 23px;
+}
+#breadcrumb li:nth-child(even) a {
+    background-color: #2980b9;
+}
+#breadcrumb li:nth-child(even) a:before {
+    border-color: #2980b9;
+    border-left-color: transparent;
+}
+#breadcrumb li:nth-child(even) a:after {
+    border-left-color: #2980b9;
+}
+#breadcrumb li:first-child a {
+    padding-left: 15px;
+    -moz-border-radius: 4px 0 0 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px 0 0 4px;
+}
+#breadcrumb li:first-child a:before {
+    border: none;
+}
+#breadcrumb li:last-child a {
+    padding-right: 15px;
+    -moz-border-radius: 0 4px 4px 0;
+    -webkit-border-radius: 0;
+    border-radius: 0 4px 4px 0;
+}
+#breadcrumb li:last-child a:after {
+    border: none;
+}
+#breadcrumb li a:before, #breadcrumb li a:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 0 solid #3498db;
+    border-width: 20px 10px;
+    width: 0;
+    height: 0;
+}
+#breadcrumb li a:before {
+    left: -20px;
+    border-left-color: transparent;
+}
+#breadcrumb li a:after {
+    left: 100%;
+    border-color: transparent;
+    border-left-color: #3498db;
+}
+#breadcrumb li a:hover {
+    background-color: #1abc9c;
+}
+#breadcrumb li a:hover:before {
+    border-color: #1abc9c;
+    border-left-color: transparent;
+}
+#breadcrumb li a:hover:after {
+    border-left-color: #1abc9c;
+}
+#breadcrumb li a:active {
+    background-color: #16a085;
+}
+#breadcrumb li a:active:before {
+    border-color: #16a085;
+    border-left-color: transparent;
+}
+#breadcrumb li a:active:after {
+    border-left-color: #16a085;
+}
+.ng-invalid { background-color: lightpink; }
+.ng-valid { background-color: lightgreen; }
+span.error { color: red; font-weight: bold; font-size: small}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content{width: 20%}
+
+.gridaction{
+    padding: 4px 16px;
+}

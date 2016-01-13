@@ -1,0 +1,53 @@
+<div ng-controller="AdminUserController" class="container-fluid">
+    <div>
+        <ul id="breadcrumb">
+            <li><a><span class="icon icon-beaker"> </span> User</a></li>
+            <li><a><span class="icon icon-double-angle-right"></span>{{selectedChildName}}</a></li>
+        </ul>
+    </div>
+    <div style="margin-top: 30px">
+        <button type="button" ng-click="" class="btn btn-sm btn-success">
+            <i class="glyphicon-plus">
+            </i> Add User
+        </button>
+    </div>
+
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">User List</div>
+        </div>
+
+        <div class="portlet-body">
+            <table class="table table-hover table-bordered"
+                   st-table="items"
+                   st-pipe="load_data">
+                <thead>
+                    <tr>
+                        <th lr-drag-src="headers" lr-drop-target="headers" ng-repeat="col in  table_columns" st-sort="{{col}}">{{col}}</th>
+                    </tr>
+                </thead>
+
+                <!-- CONTENT -->
+                <tbody>
+                <tr ng-repeat="u in userItems">
+                    <td>{{u.name}}</td>
+                    <td>{{u.email}}</td>
+                    <td></td>
+                    <td><button type="button" ng-click="removeRow(i)" class="btn btn-sm btn-danger">delete</button></td>
+                </tr>
+                </tbody>
+
+                <!-- PAGINATION -->
+                <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div  st-template="parent/template/pagination.html"
+                              st-pagination=""
+                              st-items-by-page="itemsByPage"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
