@@ -26,7 +26,7 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
             controller: "AdminController"
         }).
         when('/admin/user/:name', {
-            templateUrl: CONSTANTS.PAGE_RESOUCES + 'admin/partial/admin.html',
+            templateUrl:'admin/partial/admin.html',
             controller: "AdminDetailController"
         }).
         otherwise({

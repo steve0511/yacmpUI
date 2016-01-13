@@ -21,12 +21,12 @@ var CONSTANTS = {
 
     'SERVICE_USER' :{
         'ID' : "USER",
-        'PATH': "localhost:8000/core/authz/users",
+        'PATH': "/core/authz/users",
         'DOCUMENTKIND': "com:vmware:xenon:services:common:UserService:UserState"
     },
 
     'SERVICE_QUERY' :{
         'ID' : "QUERY TASKS",
-        'PATH': "localhost:8000/core/query-tasks",
+        'PATH': "/core/query-tasks",
     }
 };
