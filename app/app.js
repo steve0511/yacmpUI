@@ -10,22 +10,22 @@ var yacmpApp = angular.module('yacmpApp', ['ngRoute', 'ngResource', 'nvd3', 'sma
 yacmpApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when("/", {
-            templateUrl: CONSTANTS.PAGE_RESOUCES + 'home/partial/dashboard.html'
+            templateUrl: 'home/partial/dashboard.html'
         }).
         when("/home", {
-            templateUrl: CONSTANTS.PAGE_RESOUCES + 'home/partial/dashboard.html'
+            templateUrl: 'home/partial/dashboard.html'
         }).
         when("/catalog", {
-            templateUrl: CONSTANTS.PAGE_RESOUCES + 'catalog/partial/catalog.html',
+            templateUrl: 'catalog/partial/catalog.html',
         }).
         when("/deployment", {
-            templateUrl: CONSTANTS.PAGE_RESOUCES + 'deployment/partial/deployment.html'
+            templateUrl: 'deployment/partial/deployment.html'
         }).
-        when("/admin", {
-            templateUrl: CONSTANTS.PAGE_RESOUCES + 'admin/partial/admin.html',
+        when("/admin/users", {
+            templateUrl: 'admin/partial/admin_users_list.html',
             controller: "AdminController"
         }).
-        when('/admin/:name', {
+        when('/admin/user/:name', {
             templateUrl: CONSTANTS.PAGE_RESOUCES + 'admin/partial/admin.html',
             controller: "AdminDetailController"
         }).

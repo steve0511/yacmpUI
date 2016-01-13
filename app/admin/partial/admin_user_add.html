@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">
+        Add User
+    </h4>
+</div>
+<div class="modal-body">
+    <form name="userForm">
+        <div class="well">
+            <div class="form-group">
+                <label>Name</label>
+                <input name="email" class="form-control"
+                       ng-model="user.email" required />
+                <span class="error" ng-show="userForm.email.$error.required">
+                    Please enter user email
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input name="description" class="form-control"
+                       ng-model="user.description"/>
+            </div>
+
+            <div class="text-center">
+                <button ng-disabled="userForm.$invalid"
+                        ng-click="submit(user)"
+                        class="btn btn-primary">
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
