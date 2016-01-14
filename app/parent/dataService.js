@@ -46,7 +46,7 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
             return spec;
         }
 
-        this.postServiceInstance = function (path, body) {
+        this.post = function (path, body) {
             var req = {
                 method: 'POST',
                 url: UtilService.getBaseUrl() + path,
@@ -58,10 +58,12 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
             return $http(req, body)
         }
 
-        this.getSystemInfo = function (path) {
+
+
+        this.get = function (path) {
             var req = {
                 method: 'GET',
-                url: UtilService.getBaseUrl() + '/core/management',
+                url: UtilService.getBaseUrl() + path,
                 headers: {
                     'Content-Type': CONSTANTS.CONTENT_TYPE.JSON
                 }
@@ -69,16 +71,12 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
             return $http(req);
         };
 
-        this.getServicesInstances = function (path) {
+        this.getSystemInfo = function (path) {
             var req = {
                 method: 'GET',
-                //url: UtilService.getBaseUrl() + '/core/document-index?documentSelfLink=*',
-                url: UtilService.getBaseUrl() + path,
+                url: UtilService.getBaseUrl() + '/core/management',
                 headers: {
-                    'Content-Type': CONSTANTS.CONTENT_TYPE.JSON,
-                    'Access-Control-Allow-Origin': 'http://127.0.0.1',
-                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With, Accept'
+                    'Content-Type': CONSTANTS.CONTENT_TYPE.JSON
                 }
             };
             return $http(req);
@@ -130,7 +128,7 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
         };
 
 
-        this.deleteService = function (selflink) {
+        this.deleteDocument = function (selflink) {
             var req = {
                 method: 'DELETE',
                 data: {},

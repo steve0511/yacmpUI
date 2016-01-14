@@ -18,15 +18,13 @@ angular.module('yacmpApp').controller('AdminUserController', ['$scope', 'DataSer
 
             $scope.table_columns = ['name', 'email', 'update_date', 'action'];
 
-            $scope.itemsByPage = CONSTANTS.DEFAULT_PAGE_LIMIT;
-
             $scope.nextPageLink = null;
 
             $scope.prevPageLink = null;
 
             $scope.query_users = function (pageLink) {
                 $scope.userItems = [];
-                DataService.getServicesInstances(pageLink).success(function (data) {
+                DataService.get(pageLink).success(function (data) {
                     var documentLinks = data.results.documentLinks;
                     var documentObjs = data.results.documents;
 
@@ -40,7 +38,8 @@ angular.module('yacmpApp').controller('AdminUserController', ['$scope', 'DataSer
                         var item = {};
 
                         item["email"] = document.email
-                        item["name"] = linkString
+                        item["link"] = linkString
+                        item["name"]  = UtilService.getDocumentLinkId(linkString);
 
                         $scope.userItems.push(item)
                     }
@@ -64,7 +63,7 @@ angular.module('yacmpApp').controller('AdminUserController', ['$scope', 'DataSer
                 var number = pagination.number || $scope.itemsByPage;
 
                 // Get the Total count for User Service
-                DataService.postServiceInstance(CONSTANTS.SERVICE_QUERY.PATH, query_spec_total).success(function (data) {
+                DataService.post(CONSTANTS.SERVICE_QUERY.PATH, query_spec_total).success(function (data) {
                     $scope.totalCount = data.results.documentCount;
                     tableState.pagination.numberOfPages = data.results.documentCount / number;
 
@@ -73,7 +72,7 @@ angular.module('yacmpApp').controller('AdminUserController', ['$scope', 'DataSer
                 });
 
                 // Get first user document
-                DataService.postServiceInstance(CONSTANTS.SERVICE_QUERY.PATH, query_spec).success(function (data, status) {
+                DataService.post(CONSTANTS.SERVICE_QUERY.PATH, query_spec).success(function (data, status) {
                     console.log("request status: " + status);
 
                     $scope.nextPageLink = data.results.nextPageLink;
@@ -91,34 +90,28 @@ angular.module('yacmpApp').controller('AdminUserController', ['$scope', 'DataSer
             };
 
 
-            $scope.view = function (link) {
-//                ngDialog.open({ template: '/user-interface/resources/com/vmware/yacmp/ui/UiService/admin/partial/admin_user_detail.html',
-//                     className: 'ngdialog-theme-plain',
-//                     controller: ['$scope', function($scope) {
-//                         DataService.getDocument(link).success(function(data, status){
-//                             $scope.user = data;
-//                         }).error(function (data, status, headers, config) {
-//                             $scope.errorMessage = "Couldn't load the user, error # " + status;
-//                         });
-//                     }]
-//                });
-                $location.path('/admin/user/' + user.email);
+            $scope.view = function (val) {
+                $location.path('/admin/user/' + val.name);
+                //$location.path('/blueprint')
             };
 
             $scope.add = function () {
                 ngDialog.open({
-                    template: '/user-interface/resources/com/vmware/yacmp/ui/UiService/admin/partial/admin_user_add.html',
+                    template:  'admin/partial/admin_user_add.html',
                     className: 'ngdialog-theme-plain',
-                    scope: $scope
+                    scope: $scope,
+                    showClose: true
                 });
             };
 
+
             $scope.submit = function (user) {
                 console.log(user);
-                DataService.postServiceInstance(CONSTANTS.SERVICE_USER.PATH, user).success(function (data, status) {
+                DataService.post(CONSTANTS.SERVICE_USER.PATH, user).success(function (data, status) {
                     console.log("request status: " + status);
                     ngDialog.close();
                     $route.reload();
+
                 }).error(function (data, status, headers, config) {
                     $scope.errorMessage = "Couldn't add user, error # " + status;
                 });
@@ -127,16 +120,18 @@ angular.module('yacmpApp').controller('AdminUserController', ['$scope', 'DataSer
 
             $scope.delete = function (userlink) {
                 ngDialog.openConfirm({
-                    template: '<p>Are you sure you want to delete?</p>' +
-                    '<div class="confirm">' +
-                    '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes' +
-                    '</button>&nbsp;&nbsp;&nbsp;&nbsp;' +
-                    '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No' +
-                    '</button></div>',
-                    plain: true,
-                    className: 'ngdialog-theme-default'
+                    template:
+                    '<div class="box-body"><p>Are you sure you want to delete?</p><div>' +
+                        '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes</button>&nbsp;&nbsp;&nbsp;&nbsp'+
+                        '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No</button></div>' +
+                    '</div>',
+
+                    className: 'ngdialog-theme-plain',
+
+                    plain: true
+
                 }).then(function (confirm) {
-                    DataService.deleteService(userlink).success(function (data, status) {
+                    DataService.deleteDocument(userlink).success(function (data, status) {
                         $route.reload();
                     }).error(function (data, status, headers, config) {
                         $scope.errorMessage = "Couldn't delete user, error # " + status;

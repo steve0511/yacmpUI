@@ -7,8 +7,8 @@
 angular.module('yacmpApp').service('UtilService', ['$http', '$location',
     function ($http, $location) {
         this.getBaseUrl = function () {
-            return $location.protocol() + '://' + $location.host() + ":" + $location.port() + "/api";
-           // return $location.protocol() + '://' + '127.0.0.1' + ":" + "8000";
+            //return $location.protocol() + '://' + $location.host() + ":" + $location.port();
+            return $location.protocol() + '://' + '127.0.0.1';
         };
 
         this.getLocationParts = function(){
@@ -58,5 +58,10 @@ angular.module('yacmpApp').service('UtilService', ['$http', '$location',
 
             return formattedText + " " + camelCaseString;
         };
+
+        this.getDocumentLinkId = function (link) {
+            var n = link.lastIndexOf("/");
+            return link.substring(n+1);
+        }
 
     }]);

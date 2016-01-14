@@ -8,23 +8,14 @@ angular.module('yacmpApp').controller('AdminUserDetailController', ['$scope', 'D
         '$routeParams', '$timeout',
 
         function ($scope, DataService, UtilService, $routeParams, $timeout) {
-            console.log("AdminController")
 
-            $scope.childs = [
-                { name: 'Users',       url:  CONSTANTS.UI_RESOURCES +  'admin/partial/admin_users_list.html'},
-                { name: 'Groups',      url:  CONSTANTS.UI_RESOURCES +  'admin/partial/admin_groups.html'},
-                { name: 'Resource',    url:  CONSTANTS.UI_RESOURCES +  'admin/partial/admin_resources.html'},
-                { name: 'Entitlement', url:  CONSTANTS.UI_RESOURCES +  'admin/partial/admin_entitlement.html'}
-            ];
+            var name = $routeParams.name;
 
-            $scope.selectedChildName = $scope.childs[0].name;
-
-            $scope.selectedChildUrl = CONSTANTS.UI_RESOURCES +  'admin/partial/admin_user_detail.html';
-
-            $scope.changeTemplate = function(val){
-                $scope.selectedChildUrl = val.url;
-                $scope.selectedChildName = val.name;
-            };
+            DataService.get(CONSTANTS.SERVICE_USER.PATH+"/"+name).success(function(data, status){
+                $scope.user = data;
+            }).error(function (data, status, headers, config) {
+                $scope.errorMessage = "Couldn't load the user, error # " + status;
+            });
 
         }
     ]

@@ -1346,6 +1346,9 @@ body > .header .logo .icon {
 .box .box-body > .table {
   margin-bottom: 0;
 }
+.box .box-body > .table > tbody > tr > td, .table > tfoot > tr > td {
+    vertical-align: baseline;
+}
 .box .box-body.chart-responsive {
   width: 100%;
   overflow: hidden;
@@ -1392,6 +1395,9 @@ body > .header .logo .icon {
   border-right: 0;
 }
 .box .box-body .table {
+  margin-bottom: 0;
+}
+.box .box-body .table .tbody {
   margin-bottom: 0;
 }
 .box .box-body .full-width-chart {
@@ -3405,3 +3411,4 @@ fieldset[disabled] .btn-vk.active {
   color: #587ea3;
   background-color: #ffffff;
 }
+

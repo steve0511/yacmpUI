@@ -12,7 +12,7 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
         when("/", {
             templateUrl: 'home/partial/dashboard.html'
         }).
-        when("/home", {
+        when("/blueprint", {
             templateUrl: 'home/partial/dashboard.html'
         }).
         when("/catalog", {
@@ -22,19 +22,20 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'deployment/partial/deployment.html'
         }).
         when("/admin/users", {
-            templateUrl: 'admin/partial/admin_users_list.html',
-            controller: "AdminController"
+            templateUrl: 'admin/partial/admin_users.html',
         }).
         when('/admin/user/:name', {
-            templateUrl:'admin/partial/admin.html',
-            controller: "AdminDetailController"
+            templateUrl: 'admin/partial/admin_user_details.html'
         }).
         otherwise({
             redirectTo: '/'
         });
 
 }]).config(['$httpProvider', function($httpProvider, $cookieStore) {
-    $httpProvider.defaults.useXDomain = true;
-    $httpProvider.defaults.withCredentials = true;
-    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    //$httpProvider.defaults.useXDomain = true;
+    //$httpProvider.defaults.withCredentials = true;
+    //delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    //delete $httpProvider.defaults.headers.common["access-control-allow-origin"];
+    //delete $httpProvider.defaults.headers.common["access-control-allow-methods"];
+
 }]);

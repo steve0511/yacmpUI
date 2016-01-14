@@ -9,7 +9,6 @@ var CONSTANTS = {
         'PATH': '/core/ui'
     },
     'UI_RESOURCES': '/user-interface/resources/com/vmware/yacmp/ui/UiService/',
-    'PAGE_RESOUCES': '',
     'UI_BASE': '/core/ui/default#',
     'UI_CUSTOM_BASE': '/core/ui/custom#',
 
