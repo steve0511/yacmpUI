@@ -14,7 +14,7 @@ angular.module('yacmpApp').controller('BluePrintDetailController', ['$scope', 'D
             DataService.get(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id).success(function(data, status){
                 $scope.blueprint = data;
             }).error(function (data, status, headers, config) {
-                $scope.errorMessage = "Couldn't load the user, error # " + status;
+                $scope.errorMessage = "Couldn't load the blueprint, error # " + status;
             });
 
         }

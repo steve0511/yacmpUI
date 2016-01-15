@@ -19,7 +19,10 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'blueprint/partial/blueprint_detail.html'
         }).
         when("/catalog", {
-            templateUrl: 'catalog/partial/catalog.html',
+            templateUrl: 'catalog/partial/catalogs.html',
+        }).
+        when("/catalog/:id", {
+            templateUrl: 'catalog/partial/catalog_detail.html',
         }).
         when("/deployment", {
             templateUrl: 'deployment/partial/deployment.html'

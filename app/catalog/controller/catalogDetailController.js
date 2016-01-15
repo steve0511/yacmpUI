@@ -1,26 +1,21 @@
 /*
  * Copyright (c) 2015 VMware, Inc. All Rights Reserved.
  */
-angular.module('yacmpApp').controller('CatalogDetailCtrl', ['$scope', 'UtilService',
-        '$routeParams', '$timeout', '$route',
 
-        function ($scope, UtilService, $routeParams, $timeout,  $route) {
+'use strict';
 
-            console.log($routeParams.name);
+angular.module('yacmpApp').controller('CatalogDetailController', ['$scope', 'DataService', 'UtilService',
+        '$routeParams', '$timeout',
 
-            $scope.allEntries = [
-                    { name: 'Catalog Management', url:  CONSTANTS.PAGE_RESOUCES + 'catalog/partial/catalog_list.html'},
-            ];
+        function ($scope, DataService, UtilService, $routeParams, $timeout) {
 
-            $scope.templateUrl = "catalog/partial/catalog_dialog.html";
+            var id = $routeParams.id;
 
-            $scope.selectedNavItem = $scope.allEntries[0].name
-
-            $scope.changeTemplate = function(val){
-                    $scope.templateUrl = val.url
-                    $scope.selectedNavItem = val.name
-            };
-
+            DataService.get(CONSTANTS.SERVICE_CATALOG.PATH+"/"+id).success(function(data, status){
+                $scope.catalog = data;
+            }).error(function (data, status, headers, config) {
+                $scope.errorMessage = "Couldn't load the catalog, error # " + status;
+            });
 
         }
     ]

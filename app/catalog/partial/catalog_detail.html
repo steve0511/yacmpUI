@@ -1,15 +1,15 @@
-<div ng-controller="BluePrintDetailController" class="container-fluid">
+<div ng-controller="CatalogDetailController" class="container-fluid">
 
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                View BluePrint
-                <small>view blueprint details</small>
+                View Catalog
+                <small>view catalogs details</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#/blueprint"><i class="fa fa-dashboard"></i> BluePrint </a></li>
+                <li><a href="#/catalog"><i class="fa fa-dashboard"></i> Catalog </a></li>
             </ol>
         </section>
 
@@ -21,14 +21,16 @@
                         <div class="col-md-6">
                             <div class="box box-solid">
                                 <div class="box-header">
-                                    <h3 class="box-title">BluePrint</h3>
+                                    <h3 class="box-title">Catalog</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                     <dl>
                                         <dt>Name</dt>
-                                        <dd>{{blueprint.name}}</dd>
-                                        <dt>BluePrint</dt>
-                                        <dd>{{blueprint.blueprint}}</dd>
+                                        <dd>{{catalog.name}}</dd>
+                                        <dt>Description</dt>
+                                        <dd>{{catalog.description}}</dd>
+                                        <dt>Status</dt>
+                                        <dd>{{catalog.status}}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -36,7 +38,7 @@
                     </div>
 
                     <div class="box-footer pull-left">
-                        <a href="#/blueprint">Back</a>
+                        <a href="#/catalog">Back</a>
                     </div>
                 </div>
             </div>

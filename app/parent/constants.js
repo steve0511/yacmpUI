@@ -30,6 +30,12 @@ var CONSTANTS = {
         'DOCUMENTKIND': "com:vmware:yacmp:core:blueprint:Blueprint"
     },
 
+    'SERVICE_CATALOG' :{
+        'ID' : "CATALOG",
+        'PATH': "/yacmp/catalog",
+        'DOCUMENTKIND': "com:vmware:yacmp:core:catalog:Catalog"
+    },
+
     'SERVICE_QUERY' :{
         'ID' : "QUERY TASKS",
         'PATH': "/core/query-tasks",
