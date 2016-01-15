@@ -13,7 +13,7 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'home/partial/dashboard.html'
         }).
         when("/blueprint", {
-            templateUrl: 'blueprint/partial/blueprint_list.html'
+            templateUrl: 'blueprint/partial/blueprints.html'
         }).
         when("/blueprint/:id", {
             templateUrl: 'blueprint/partial/blueprint_detail.html'

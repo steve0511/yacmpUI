@@ -1,0 +1,73 @@
+<div ng-controller="BlueprintController" class="content-wrapper">
+
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            BluePrint
+            <small>BluePrint management</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#/blueprint"><i class="fa fa-dashboard"></i> BluePrint </a></li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">BluePrint List</h3>
+                        <div class="box-tools pull-right">
+                            <input type="text" name="table_search" class="form-control input-sm pull-left" style="width: 150px;" placeholder="Search"/>
+                            <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-sm btn-primary" ng-click="add()" ><i class="fa fa-user-md"></i>Upload</button>
+                        </div>
+                    </div>
+
+                    <div class="box-body table-responsive">
+                        <table class="table table-bordered table-hover table-striped"
+                               st-table="items"
+                               st-pipe="load_data">
+                            <thead>
+                            <tr>
+                                <th lr-drag-src="headers" lr-drop-target="headers" ng-repeat="col in table_columns" st-sort="{{col}}">{{col}}</th>
+                            </tr>
+                            </thead>
+
+                            <!-- CONTENT -->
+                            <tbody>
+                            <tr ng-repeat="b in blueprints">
+                                <td> <a ng-click="view(b.id)">{{b.name}}</a></td>
+                                <td>{{b.blueprint}}</td>
+                                <td>{{b.status}}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+                                            Action <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href ng-click="publish(b.id)">Publish</a></li>
+                                            <li><a href ng-click="delete(b.id)">Delete</a></li>
+                                            <li><a>Edit</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="box-footer clearfix">
+                        <div class="pull-right">
+                            <small>Total blueprints: {{totalCount}}</small>
+                            <button class="btn btn-xs btn-primary" ng-click="getPage(prevPageLink)"><i class="fa fa-caret-left"></i></button>
+                            <button class="btn btn-xs btn-primary" ng-click="getPage(nextPageLink)"><i class="fa fa-caret-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
