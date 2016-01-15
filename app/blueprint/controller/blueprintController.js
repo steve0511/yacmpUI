@@ -134,6 +134,7 @@ angular.module('yacmpApp').controller('BlueprintController', ['$scope', 'DataSer
             $scope.getPage = function (pageUrl) {
                 $scope.query(pageUrl);
             };
+
         }
     ]
 );

@@ -21,7 +21,7 @@
 
                 <div class="form-group">
                     <label>BluePrint</label>
-                    <input name="blueprint" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint url...."/>
+                    <input name="blueprint" class="form-control" ng-model="blueprint.blueprint" ng-pattern="/^(http|https)://(.*?)zip$/" required placeholder="please input blueprint url...."/>
 
                     <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
                         Please enter blueprint url
