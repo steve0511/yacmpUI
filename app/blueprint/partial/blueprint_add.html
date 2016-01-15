@@ -1,0 +1,40 @@
+<div class="col-md12">
+
+    <section class="content-header">
+        <h2>
+            Create Blue Print
+        </h2>
+    </section>
+
+    <div class="box box-primary">
+        <form role="form" name="bluePrintForm">
+            <div class="box-body">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" ng-model="blueprint.name"  required placeholder="Please input blueprint file name...." />
+
+                    <span class="error" ng-show="bluePrintForm.name.$error.required">
+                        Please enter blueprint name
+                    </span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>BluePrint</label>
+                    <input class="form-control" ng-model="blueprint.blueprint"  required placeholder="Please input blueprint url...." />
+
+                    <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
+                        Please enter blueprint url
+                    </span>
+
+                </div>
+
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" ng-click="submit(blueprint)">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+

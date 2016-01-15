@@ -7,8 +7,8 @@
 angular.module('yacmpApp').service('UtilService', ['$http', '$location',
     function ($http, $location) {
         this.getBaseUrl = function () {
-            //return $location.protocol() + '://' + $location.host() + ":" + $location.port();
-            return $location.protocol() + '://' + '127.0.0.1';
+            return $location.protocol() + '://' + $location.host() + ":" + $location.port()+'/api';
+            //return $location.protocol() + '://' + '127.0.0.1';
         };
 
         this.getLocationParts = function(){

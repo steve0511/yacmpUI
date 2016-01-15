@@ -24,6 +24,12 @@ var CONSTANTS = {
         'DOCUMENTKIND': "com:vmware:xenon:services:common:UserService:UserState"
     },
 
+    'SERVICE_BLUEPRINT' :{
+        'ID' : "BLUEPRINT",
+        'PATH': "/yacmp/blueprint",
+        'DOCUMENTKIND': "com:vmware:yacmp:core:blueprint:Blueprint"
+    },
+
     'SERVICE_QUERY' :{
         'ID' : "QUERY TASKS",
         'PATH': "/core/query-tasks",
