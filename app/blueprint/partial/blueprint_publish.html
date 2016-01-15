@@ -1,0 +1,40 @@
+<div class="col-md12">
+
+    <section class="content-header">
+        <h2>
+            Publish Blue Print
+        </h2>
+    </section>
+
+    <div class="box box-primary">
+        <form role="form" name="bluePrintPublishForm">
+            <div class="box-body">
+                <div class="form-group">
+                    <label>Catalog name</label>
+                    <input name="name" class="form-control" ng-model="catalog.name" required placeholder="please input catalog name...."/>
+
+                    <span class="error" ng-show="bluePrintPublishForm.name.$error.required">
+                        catalog name is empty
+                    </span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Catalog description</label>
+                    <input name="description" class="form-control" ng-model="catalog.description" required placeholder="please input catalog description...."/>
+
+                    <span class="error" ng-show="bluePrintPublishForm.description.$error.required">
+                        catalog description is empty
+                    </span>
+
+                </div>
+
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" ng-click="submitpublish(catalog)" ng-disabled="bluePrintPublishForm.$invalid">Publish</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+

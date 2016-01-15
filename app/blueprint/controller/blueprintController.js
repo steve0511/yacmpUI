@@ -135,6 +135,34 @@ angular.module('yacmpApp').controller('BlueprintController', ['$scope', 'DataSer
                 $scope.query(pageUrl);
             };
 
+            $scope.openpublish = function (id){
+                ngDialog.open({
+                    template: 'blueprint/partial/blueprint_publish.html',
+                    className: 'ngdialog-theme-plain',
+                    scope: $scope,
+                    controller: ['$scope', function($scope) {
+                        $scope.id = id;
+                        $scope.submitpublish = function (catalog){
+                            var data = {
+                                "catalog": {
+                                    "name": catalog.name,
+                                    "description": catalog.description
+                                },
+                                "publishStatus" : "PUBLISHED"
+                            };
+                            DataService.patch(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id,data).success(function (data, status) {
+                                ngDialog.close();
+                                $route.reload();
+                            }).error(function (data, status, headers, config) {
+                                $scope.errorMessage = "Couldn't publish blueprint, error # " + status;
+                            });
+                        }
+                    }]
+                });
+            };
+
+
+
         }
     ]
 );

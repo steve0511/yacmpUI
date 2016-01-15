@@ -22,7 +22,7 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
                 }
             }
             return spec;
-        }
+        };
 
         this.querySpec = function(documentKind, numbers){
             var spec = {
@@ -44,7 +44,7 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
                 }
             }
             return spec;
-        }
+        };
 
         this.post = function (path, body) {
             var req = {
@@ -56,8 +56,19 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
                 data: body
             };
             return $http(req, body)
-        }
+        };
 
+        this.patch = function (path, body) {
+            var req = {
+                method: 'PATCH',
+                url: UtilService.getBaseUrl() + path,
+                headers: {
+                    'Content-Type': CONSTANTS.CONTENT_TYPE.JSON
+                },
+                data: body
+            };
+            return $http(req, body)
+        };
 
 
         this.get = function (path) {
@@ -102,7 +113,7 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
                 }
             };
             return $http(req);
-        }
+        };
 
 
         this.getServiceDocuments = function (path, service) {
