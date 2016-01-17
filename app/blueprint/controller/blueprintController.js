@@ -143,6 +143,7 @@ angular.module('yacmpApp').controller('BlueprintController', ['$scope', 'DataSer
                     controller: ['$scope', function($scope) {
                         $scope.id = id;
                         $scope.submitpublish = function (catalog){
+                            $scope.publishing = true ;
                             var data = {
                                 "catalog": {
                                     "name": catalog.name,
@@ -151,10 +152,12 @@ angular.module('yacmpApp').controller('BlueprintController', ['$scope', 'DataSer
                                 "publishStatus" : "PUBLISHED"
                             };
                             DataService.patch(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id,data).success(function (data, status) {
+                                $scope.publishing = false ;
                                 ngDialog.close();
                                 $route.reload();
                             }).error(function (data, status, headers, config) {
-                                $scope.errorMessage = "Couldn't publish blueprint, error # " + status;
+                                $scope.publishing = false ;
+                                $scope.errorMessage = "Failed to publish blueprint, error status code is# " + status;
                             });
                         }
                     }]

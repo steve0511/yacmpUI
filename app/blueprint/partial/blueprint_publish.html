@@ -1,5 +1,14 @@
 <div class="col-md12">
 
+    <div class="alert alert-danger alertmsg" ng-show="errorMessage" ng-cloak>
+        {{errorMessage}}
+    </div>
+
+    <span data-ng-show="publishing">
+            Publishing
+        <i class="fa fa-spinner fa-spin"></i>
+    </span>
+
     <section class="content-header">
         <h2>
             Publish Blue Print
@@ -7,6 +16,7 @@
     </section>
 
     <div class="box box-primary">
+        <fieldset ng-disabled="publishing">
         <form role="form" name="bluePrintPublishForm">
             <div class="box-body">
                 <div class="form-group">
@@ -34,7 +44,7 @@
                 </div>
             </div>
         </form>
-
+        </fieldset>
     </div>
 </div>
 

@@ -1,7 +1,5 @@
-
-
 .ngdialog.ngdialog-theme-default .ngdialog-content{width: 20%}
 
-
-
 span.error {color: red; font-weight: bold; font-size: small}
+
+.alertmsg {margin-top: 10px; margin-bottom: 5px; padding: 10px}
