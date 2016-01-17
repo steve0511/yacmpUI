@@ -70,6 +70,17 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
             return $http(req, body)
         };
 
+        this.put = function (path, body) {
+            var req = {
+                method: 'PUT',
+                url: UtilService.getBaseUrl() + path,
+                headers: {
+                    'Content-Type': CONSTANTS.CONTENT_TYPE.JSON
+                },
+                data: body
+            };
+            return $http(req, body)
+        };
 
         this.get = function (path) {
             var req = {

@@ -1,8 +1,11 @@
 <div class="col-md12">
 
     <section class="content-header">
-        <h2>
-            Create Blue Print
+        <h2 ng-if="!isedit">
+            Create Blueprint
+        </h2>
+        <h2 ng-if="isedit">
+            Edit Blueprint
         </h2>
     </section>
 
@@ -20,22 +23,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label>BluePrint</label>
-                    <input name="blueprint" class="form-control" ng-model="blueprint.blueprint" ng-pattern="/^(http|https)://(.*)(\.zip|\.tar\.gz)$/" required placeholder="please input blueprint url...."/>
-
+                    <label>Blueprint</label>
+                    <!--<input name="blueprint" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."/>-->
+                    <textarea name="blueprint" ng-trim="false" rows="16" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."></textarea>
                     <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
-                        blueprint url is empty
-                    </span>
-
-                    <span class="error" ng-show="bluePrintForm.blueprint.$invalid&&!bluePrintForm.blueprint.$error.required">
-                        blueprint url is invalid
+                        blueprint content is empty
                     </span>
 
                 </div>
 
                 <div class="pull-right">
-                    <button type="submit" class="btn btn-primary" ng-click="submit(blueprint)" ng-disabled="bluePrintForm.$invalid">Submit</button>
+                    <button ng-if="!isedit" type="submit" class="btn btn-primary" ng-click="submit(blueprint)" ng-disabled="bluePrintForm.$invalid">Submit</button>
+                    <button ng-if="isedit" type="submit" class="btn btn-primary" ng-click="save(blueprint)" ng-disabled="bluePrintForm.$invalid">Save</button>
                 </div>
+
+
             </div>
         </form>
 

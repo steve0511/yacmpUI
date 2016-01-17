@@ -3,3 +3,5 @@
 span.error {color: red; font-weight: bold; font-size: small}
 
 .alertmsg {margin-top: 10px; margin-bottom: 5px; padding: 10px}
+
+.blueprintadd .ngdialog-content{width :50% !important; margin-top: -150px!important;}

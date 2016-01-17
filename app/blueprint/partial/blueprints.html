@@ -4,11 +4,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            BluePrint
-            <small>BluePrint management</small>
+            Blueprint
+            <small>Blueprint management</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#/blueprint"><i class="fa fa-dashboard"></i> BluePrint </a></li>
+            <li><a href="#/blueprint"><i class="fa fa-dashboard"></i> Blueprint </a></li>
         </ol>
     </section>
 
@@ -18,11 +18,12 @@
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">BluePrint List</h3>
+                        <h3 class="box-title">Blueprint List</h3>
                         <div class="box-tools pull-right">
                             <input type="text" name="table_search" class="form-control input-sm pull-left" style="width: 150px;" placeholder="Search"/>
                             <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                            <button class="btn btn-sm btn-primary" ng-click="add()" ><i class="fa fa-user-md"></i>Upload</button>
+                            <button class="btn btn-sm btn-primary" ng-click="upload()" ><i class="fa fa-user-md"></i>Upload</button>
+                            <button class="btn btn-sm btn-primary" ng-click="add()" ><i class="fa fa-user-md"></i>Create</button>
                         </div>
                     </div>
 
@@ -40,7 +41,6 @@
                             <tbody>
                             <tr ng-repeat="b in blueprints">
                                 <td> <a ng-click="view(b.id)">{{b.name}}</a></td>
-                                <td>{{b.blueprint}}</td>
                                 <td>{{b.status}}</td>
                                 <td>
                                     <div class="btn-group">
@@ -50,7 +50,7 @@
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href ng-click="openpublish(b.id)">Publish</a></li>
                                             <li><a href ng-click="delete(b.id)">Delete</a></li>
-                                            <li><a>Edit</a></li>
+                                            <li><a href ng-click="edit(b.id)">Edit</a></li>
                                         </ul>
                                     </div>
                                 </td>
