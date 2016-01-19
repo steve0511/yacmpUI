@@ -18,6 +18,14 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
         when("/blueprint/:id", {
             templateUrl: 'blueprint/partial/blueprint_detail.html'
         }).
+        when("/createblueprint", {
+            templateUrl: 'blueprint/partial/blueprint_add_edit.html',
+            controller: 'BluePrintAddController'
+        }).
+        when("/editblueprint/:id", {
+            templateUrl: 'blueprint/partial/blueprint_add_edit.html',
+            controller: 'BluePrintEditController'
+        }).
         when("/catalog", {
             templateUrl: 'catalog/partial/catalogs.html',
         }).

@@ -1,4 +1,4 @@
-<div class="col-md12">
+<div class="container-fluid">
 
     <section class="content-header">
         <h2 ng-if="!isedit">
@@ -7,40 +7,45 @@
         <h2 ng-if="isedit">
             Edit Blueprint
         </h2>
+        <ol class="breadcrumb">
+            <li><a href="#/blueprint"><i class="fa fa-dashboard"></i> Blueprint </a></li>
+        </ol>
     </section>
 
-    <div class="box box-primary">
-        <form role="form" name="bluePrintForm">
-            <div class="box-body">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input name="name" class="form-control" ng-model="blueprint.name" required placeholder="please input blueprint name...."/>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <form role="form" name="bluePrintForm">
+                        <div class="box-body">
+                            <div class="form-group col-md-4">
+                                <label>Name</label>
+                                  <input name="name" class="form-control" ng-model="blueprint.name" required placeholder="please input blueprint name...."/>
+                                  <span class="error" ng-show="bluePrintForm.name.$error.required">
+                                       blueprint name is empty
+                                  </span>
+                            </div>
 
-                    <span class="error" ng-show="bluePrintForm.name.$error.required">
-                        blueprint name is empty
-                    </span>
+                            <div class="form-group col-md-9">
+                                <label>Blueprint</label>
+                                <!--<input name="blueprint" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."/>-->
+                                <textarea name="blueprint" ng-trim="false" rows="20" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."></textarea>
+                                    <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
+                                     blueprint content is empty
+                                    </span>
 
+                                <div class="pull-right form-save">
+                                    <button type="button" class="btn btn-primary" ng-click="back()">Back</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button ng-if="!isedit" type="submit" class="btn btn-primary" ng-click="submit(blueprint)" ng-disabled="bluePrintForm.$invalid">Submit</button>
+                                    <button ng-if="isedit" type="submit" class="btn btn-primary" ng-click="save(blueprint)" ng-disabled="bluePrintForm.$invalid">Save</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label>Blueprint</label>
-                    <!--<input name="blueprint" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."/>-->
-                    <textarea name="blueprint" ng-trim="false" rows="16" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."></textarea>
-                    <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
-                        blueprint content is empty
-                    </span>
-
-                </div>
-
-                <div class="pull-right">
-                    <button ng-if="!isedit" type="submit" class="btn btn-primary" ng-click="submit(blueprint)" ng-disabled="bluePrintForm.$invalid">Submit</button>
-                    <button ng-if="isedit" type="submit" class="btn btn-primary" ng-click="save(blueprint)" ng-disabled="bluePrintForm.$invalid">Save</button>
-                </div>
-
-
             </div>
-        </form>
-
-    </div>
+        </div>
+    </section>
 </div>
 

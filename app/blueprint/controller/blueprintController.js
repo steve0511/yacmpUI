@@ -102,40 +102,12 @@ angular.module('yacmpApp').controller('BlueprintController', ['$scope', 'DataSer
             };
 
             $scope.add = function () {
-                ngDialog.open({
-                    template: 'blueprint/partial/blueprint_add_edit.html',
-                    className: 'ngdialog-theme-plain blueprintadd',
-                    scope: $scope
-                });
+                $location.path('/createblueprint');
             };
 
             $scope.edit = function (id) {
-                ngDialog.open({
-                    template: 'blueprint/partial/blueprint_add_edit.html',
-                    className: 'ngdialog-theme-plain blueprintadd',
-                    scope: $scope,
-                    controller: ['$scope', function($scope) {
-                        $scope.isedit = true;
-
-                        DataService.get(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id).success(function(data, status){
-                            $scope.blueprint = data;
-                        }).error(function (data, status, headers, config) {
-                            $scope.errorMessage = "Couldn't load the blueprint, error # " + status;
-                        });
-
-                        $scope.save = function (blueprint) {
-                            DataService.put(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id, blueprint).success(function (data, status) {
-                                ngDialog.close();
-                                $route.reload();
-                            }).error(function (data, status, headers, config) {
-                                $scope.errorMessage = "Couldn't edit blueprint, error # " + status;
-                            });
-                        }
-                    }]
-                });
+                $location.path('/editblueprint/'+id);
             };
-
-
 
             $scope.submit = function (blueprint) {
                 DataService.post(CONSTANTS.SERVICE_BLUEPRINT.PATH, blueprint).success(function (data, status) {
