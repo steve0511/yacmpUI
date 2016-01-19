@@ -11,3 +11,11 @@ span.error {color: red; font-weight: bold; font-size: small}
 #bpdetailcontent{
     border:none;outline:0;background:#FFF;
 }
+
+input[type="number"] {
+    width:80px;
+}
+
+.noresize {
+    resize: none;
+}

@@ -9,6 +9,11 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
 
         function ($scope, DataService, UtilService, $routeParams, $timeout, $location) {
 
+            $scope.blueprint={
+                deploymentShutdownDuration: 0,
+                deploymentTeardownDuration: 0
+            }
+
             $scope.submit = function (blueprint) {
                 DataService.post(CONSTANTS.SERVICE_BLUEPRINT.PATH, blueprint).success(function (data, status) {
                     $location.path('/blueprint');

@@ -25,10 +25,14 @@
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                     <dl>
-                                        <dt>Name</dt>
+                                        <dt>Blueprint Name</dt>
                                         <dd>{{blueprint.name}}</dd>
-                                        <dt>Blueprint</dt>
-                                        <textarea name="blueprint" ng-trim="false" rows="20" class="form-control" id="bpdetailcontent"  disabled="disabled">{{blueprint.blueprint}}</textarea>
+                                        <dt>deployment Shutdown Duration</dt>
+                                        <dd>{{blueprint.deploymentShutdownDuration}}</dd>
+                                        <dt>deployment Teardown Duration</dt>
+                                        <dd>{{blueprint.deploymentTeardownDuration}}</dd>
+                                        <dt>Blueprint Content</dt>
+                                        <textarea name="blueprint" ng-trim="false" rows="20" class="form-control noresize" id="bpdetailcontent"  disabled="disabled">{{blueprint.blueprint}}</textarea>
                                     </dl>
                                 </div>
                             </div>
