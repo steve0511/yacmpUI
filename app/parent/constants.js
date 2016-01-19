@@ -36,6 +36,12 @@ var CONSTANTS = {
         'DOCUMENTKIND': "com:vmware:yacmp:core:catalog:Catalog"
     },
 
+    'SERVICE_TASK' :{
+        'ID' : "TASK",
+        'PATH': "/yacmp/tasks",
+        'DOCUMENTKIND': "com:vmware:yacmp:core:taskservice:GenericTaskService:GenericTaskState"
+    },
+
     'SERVICE_QUERY' :{
         'ID' : "QUERY TASKS",
         'PATH': "/core/query-tasks",

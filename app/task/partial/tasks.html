@@ -1,14 +1,14 @@
-<div ng-controller="CatalogController">
+<div ng-controller="TaskController">
 
     <!-- Right side column. Contains the navbar and content of the page -->
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Catalog
-            <small>Catalog management</small>
+            Task
+            <small>Task management</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#/catalog"><i class="fa fa-dashboard"></i> Catalog </a></li>
+            <li><a href="#/tasks"><i class="fa fa-dashboard"></i> Catalog </a></li>
         </ol>
     </section>
 
@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Catalog List</h3>
+                        <h3 class="box-title">Task List</h3>
                         <div class="box-tools pull-right">
                             <input type="text" name="table_search" class="form-control input-sm pull-left" style="width: 150px;" placeholder="Search"/>
                             <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
@@ -37,22 +37,11 @@
 
                             <!-- CONTENT -->
                             <tbody>
-                            <tr ng-repeat="c in catalogs">
-                                <td> <a ng-click="view(c.id)">{{c.name}}</a></td>
-                                <td>{{c.description}}</td>
-                                <td>{{c.status}}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
-                                            Action <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href ng-click="delete(c.id)">Delete</a></li>
-                                            <li><a>Edit</a></li>
-                                            <li><a href ng-click="openRequest(c.id, c.blueprintLink)">Request</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
+                            <tr ng-repeat="c in tasks">
+                                <td>{{c.id}}</td>
+                                <td>{{c.type}}</td>
+                                <td>{{c.stage}}</td>
+                                <td>{{c.subStage}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -60,7 +49,7 @@
 
                     <div class="box-footer clearfix">
                         <div class="pull-right">
-                            <small>Total catalogs: {{totalCount}}</small>
+                            <small>Total tasks: {{totalCount}}</small>
                             <button class="btn btn-xs btn-primary" ng-click="getPage(prevPageLink)"><i class="fa fa-caret-left"></i></button>
                             <button class="btn btn-xs btn-primary" ng-click="getPage(nextPageLink)"><i class="fa fa-caret-right"></i></button>
                         </div>

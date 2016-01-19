@@ -1,0 +1,37 @@
+<div class="col-md12">
+
+    <div class="alert alert-danger alertmsg" ng-show="errorMessage" ng-cloak>
+        {{errorMessage}}
+    </div>
+
+    <span data-ng-show="requesting">
+            Requesting
+        <i class="fa fa-spinner fa-spin"></i>
+    </span>
+
+    <section class="content-header">
+        <h2>
+            Request Catalog
+        </h2>
+    </section>
+
+
+
+    <div class="box box-primary">
+        <fieldset ng-disabled="requesting">
+            <form role="form" name="catalogRequestForm">
+                <div class="box-body">
+                    <div ng-repeat="format in inputFormats">
+                        <label>{{format.name}}</label>
+                        <input name={{format.name}} class="form-control" ng-model="results[format.name]" required placeholder="{{format.default}}  {{format.description}}" />
+                    </div>
+
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary" ng-click="submitRequest()" ng-disabled="catalogRequestForm.$invalid">Publish</button>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+</div>
+

@@ -4,7 +4,7 @@
 
 'use strict';
 
-angular.module('yacmpApp').controller('CatalogController', ['$scope', 'DataService', 'UtilService',
+angular.module('yacmpApp').controller('TaskController', ['$scope', 'DataService', 'UtilService',
         '$routeParams', '$timeout', 'ngDialog', '$route', '$location',
 
         function ($scope, DataService, UtilService, $routeParams, $timeout, ngDialog, $route, $location) {
@@ -15,7 +15,7 @@ angular.module('yacmpApp').controller('CatalogController', ['$scope', 'DataServi
 
             $scope.errorMessage = null;
 
-            $scope.table_columns = ['name', 'description', 'status', 'action'];
+            $scope.table_columns = ['id', 'type', 'stage', 'subStage'];
 
             $scope.itemsByPage = CONSTANTS.DEFAULT_PAGE_LIMIT;
 
@@ -24,7 +24,7 @@ angular.module('yacmpApp').controller('CatalogController', ['$scope', 'DataServi
             $scope.prevPageLink = null;
 
             $scope.query = function (pageLink) {
-                $scope.catalogs = [];
+                $scope.tasks = [];
                 DataService.get(pageLink).success(function (data) {
                     var documentLinks = data.results.documentLinks;
                     var documentObjs = data.results.documents;
@@ -37,24 +37,23 @@ angular.module('yacmpApp').controller('CatalogController', ['$scope', 'DataServi
                         var item = {};
 
                         item["id"] = UtilService.getDocumentLinkId(linkString);
-                        item["name"] = document.name;
-                        item["description"] = document.description;
-                        item["status"] = document.status;
-                        item["blueprintLink"] = document.blueprintLink;
+                        item["type"] = document.taskHandler;
+                        item["stage"] = document.taskInfo.stage;
+                        item["subStage"] = document.taskSubStage;
 
-                        $scope.catalogs.push(item);
+                        $scope.tasks.push(item);
                     }
 
                     $scope.prevPageLink = data.results.prevPageLink;
                     $scope.nextPageLink = data.results.nextPageLink;
 
                 }).error(function (data, status, headers, config) {
-                    $scope.errorMessage = "Couldn't load the list of catalogs, error # " + status;
+                    $scope.errorMessage = "Couldn't load the list of tasks, error # " + status;
                 });
             }
 
-            var query_spec_total = DataService.querySpecTotalDocument(CONSTANTS.SERVICE_CATALOG.DOCUMENTKIND);
-            var query_spec = DataService.querySpec(CONSTANTS.SERVICE_CATALOG.DOCUMENTKIND, CONSTANTS.DEFAULT_PAGE_LIMIT);
+            var query_spec_total = DataService.querySpecTotalDocument(CONSTANTS.SERVICE_TASK.DOCUMENTKIND);
+            var query_spec = DataService.querySpec(CONSTANTS.SERVICE_TASK.DOCUMENTKIND, CONSTANTS.DEFAULT_PAGE_LIMIT);
 
             $scope.load_data = function (tableState) {
                 $scope.isLoading = true;
@@ -86,13 +85,13 @@ angular.module('yacmpApp').controller('CatalogController', ['$scope', 'DataServi
                     $scope.isLoading = false;
 
                 }).error(function (data, status, headers, config) {
-                    $scope.errorMessage = "Couldn't load the list of catalogs, error # " + status;
+                    $scope.errorMessage = "Couldn't load the list of tasks, error # " + status;
                 });
             };
 
 
             $scope.view = function (id) {
-                $location.path('/catalog/' + id);
+                $location.path('/task/' + id);
             };
 
             $scope.delete = function (id) {
@@ -118,38 +117,6 @@ angular.module('yacmpApp').controller('CatalogController', ['$scope', 'DataServi
                 $scope.query(pageUrl);
             };
 
-            $scope.openRequest = function (id, blueprintLink){
-                ngDialog.open({
-                    template: 'catalog/partial/catalog_request.html',
-                    className: 'ngdialog-theme-plain',
-                    scope: $scope,
-                    controller: ['$scope', function($scope) {
-                        $scope.results = {};
-                        $scope.inputFormats = [];
-                        DataService.get(blueprintLink + "?action=getInputFormat").success(function (data) {
-                            $scope.inputFormats = data;
-                        });
-                        $scope.submitRequest = function (){
-                            $scope.requesting = true;
-                            var requestData = {
-                                "count" : 1,
-                                "reason" : "request a vm for development",
-                                "paramJson" : JSON.stringify($scope.results),
-                                "kind" : "PROVISION"
-                            };
-                            DataService.patch(CONSTANTS.SERVICE_CATALOG.PATH+"/"+id,requestData).success(function (data, status) {
-                                $scope.requesting = false ;
-                                ngDialog.close();
-                                $route.reload();
-
-                            }).error(function (data, status, headers, config) {
-                                $scope.requesting = false ;
-                                $scope.errorMessage = "Failed to request catalog, error status code is# " + status;
-                            });
-                        }
-                    }]
-                });
-            };
         }
     ]
 );
