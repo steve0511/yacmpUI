@@ -33,12 +33,12 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'catalog/partial/catalog_detail.html',
         }).
         when("/deployment", {
-            templateUrl: CONSTANTS.UI_RESOURCES+'deployment/partial/deployments.html'
+            templateUrl: 'deployment/partial/deployments.html'
         }).
         when("/deployment/:id", {
-            templateUrl: CONSTANTS.UI_RESOURCES + 'deployment/partial/deployment_detail.html'
+            templateUrl: 'deployment/partial/deployment_detail.html'
         }).
-	when("/admin/users", {
+	    when("/admin/users", {
             templateUrl: 'admin/partial/admin_users.html',
         }).
         when('/admin/user/:name', {
@@ -49,6 +49,9 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
         }).
         when("/task/:id", {
             templateUrl: 'task/partial/task_detail.html'
+        }).
+        when("/notification", {
+            templateUrl: 'notification/partial/notifications.html',
         }).
         otherwise({
             redirectTo: '/'

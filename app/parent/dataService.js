@@ -46,6 +46,37 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
             return spec;
         };
 
+        this.queryNotificationSpec = function(numbers){
+            var spec = {
+                "taskInfo": {
+                    "isDirect": true
+                },
+
+                "querySpec": {
+                    "options": [
+                        "EXPAND_CONTENT"
+                    ],
+                    "query": {
+                        "booleanClauses": [
+                            {
+                                "term": {
+                                    "matchValue": "com:vmware:yacmp:core:notification:Notification",
+                                    "propertyName": "documentKind"
+                                }
+                            }
+                        ]
+                    },
+                    "sortTerm" : {
+                        "propertyType": "Date",
+                        "propertyName": "createDate"
+                    },
+                    "sortOrder" : "DESC",
+                    "resultLimit": numbers
+                }
+            }
+            return spec;
+        };
+
         this.post = function (path, body) {
             var req = {
                 method: 'POST',

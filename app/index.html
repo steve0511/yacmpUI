@@ -89,6 +89,9 @@
     <script type="text/javascript" src="task/controller/taskController.js"></script>
     <script type="text/javascript" src="task/controller/taskDetailController.js"></script>
 
+    <!-- Notification  -->
+    <script type="text/javascript" src="notification/controller/notificationController.js"></script>
+
 
     <!-- jQuery 2.1.4 -->
     <script src="libs/plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -207,42 +210,21 @@
                     <li class="dropdown notifications-menu">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-warning"></i>
-                            <span class="label label-warning">10</span>
+                            <span class="label label-warning">{{nofificationCount}}</span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
+                        <ul class="dropdown-menu" id="notificationmenu">
+                            <li class="header">You have {{nofificationCount}} notifications</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="ion ion-ios7-people info"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-warning danger"></i> Very long description here that may not fit into the page and may cause design problems
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users warning"></i> 5 new members joined
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <i class="ion ion-ios7-cart success"></i> 25 sales made
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ion ion-ios7-person danger"></i> You changed your username
-                                        </a>
-                                    </li>
+                                        <li ng-repeat="n in notifications">
+                                            <a ng-click="view(n.id)">
+                                                <i class="ion ion-ios7-people info">{{n.message}}</i>
+                                            </a>
+                                        </li>
                                 </ul>
                             </li>
-                            <li class="footer"><a href="#">View all</a></li>
+                            <li class="footer"><a href="#/notification">View all</a></li>
                         </ul>
                     </li>
                     <!-- Tasks: style can be found in dropdown.less -->
@@ -371,6 +353,7 @@
               </span>
                 </div>
             </form>
+
             <ul class="sidebar-menu">
                 <li class="active">
                     <a href="#home">
