@@ -44,7 +44,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown" ng-click="loadOperation(c.id)">
-                                            Action <span class="caret"></span>
+                                            Execute Workflow <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li ng-repeat="operaton in operationsCollection[$index] track by $index">
@@ -52,6 +52,16 @@
                                                     <i class="ion ion-ios7-people info">{{operaton.name}}</i>
                                                 </a>
                                             </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+                                            Action <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href ng-click="delete(c.id)">Delete</a></li>
                                         </ul>
                                     </div>
                                 </td>

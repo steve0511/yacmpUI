@@ -15,7 +15,7 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
 
             $scope.errorMessage = null;
 
-            $scope.table_columns = ['name', 'status', 'provisionTime', 'day2Operations'];
+            $scope.table_columns = ['name', 'status', 'provisionTime', 'day2Operations', 'action'];
 
             $scope.itemsByPage = CONSTANTS.DEFAULT_PAGE_LIMIT;
 
@@ -152,6 +152,25 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
                 });
 
             }
+
+            $scope.delete = function (id) {
+                ngDialog.openConfirm({
+                    template:
+                    '<div class="box-body"><p>Are you sure you want to delete?</p><div>' +
+                    '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes</button>&nbsp;&nbsp;&nbsp;&nbsp'+
+                    '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No</button></div>' +
+                    '</div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                }).then(function (confirm) {
+                    DataService.deleteDocument(CONSTANTS.SERVICE_DEPLOYMENT.PATH+"/"+id).success(function (data, status) {
+                        $route.reload();
+                    }).error(function (data, status, headers, config) {
+                        $scope.errorMessage = "Couldn't delete blueprint, error # " + status;
+                    });
+                }, function (reject) {
+                });
+            };
         }
     ]
 );

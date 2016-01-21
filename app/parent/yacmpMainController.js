@@ -25,19 +25,24 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
             var query_spec_total = DataService.querySpecTotalDocument(CONSTANTS.SERVICE_NOTIFICATION.DOCUMENTKIND);
             var query_spec = DataService.queryNotificationSpec(5);
 
+            var getFirstFiveNotification = function(){
+                $scope.notifications = [];
+                DataService.post(CONSTANTS.SERVICE_QUERY.PATH, query_spec).success(function (data, status) {
+                    $scope.nextPageLink = data.results.nextPageLink;
+
+                    console.log("next page link: " + $scope.nextPageLink)
+
+                    if (typeof $scope.nextPageLink !== "undefined" && $scope.nextPageLink !== null) {
+                        $scope.query($scope.nextPageLink)
+                    }
+
+                }).error(function (data, status, headers, config) {
+                    $scope.errorMessage = "Couldn't load the notifications, error # " + status;
+                });
+            }
+
             // Get first 5 notification document
-            DataService.post(CONSTANTS.SERVICE_QUERY.PATH, query_spec).success(function (data, status) {
-                $scope.nextPageLink = data.results.nextPageLink;
-
-                console.log("next page link: " + $scope.nextPageLink)
-
-                if (typeof $scope.nextPageLink !== "undefined" && $scope.nextPageLink !== null) {
-                    $scope.query($scope.nextPageLink)
-                }
-
-            }).error(function (data, status, headers, config) {
-                $scope.errorMessage = "Couldn't load the notifications, error # " + status;
-            });
+            getFirstFiveNotification();
 
             var getNotificationCount = function() {
                 DataService.post(CONSTANTS.SERVICE_QUERY.PATH, query_spec_total).success(function (data) {
@@ -56,6 +61,13 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
             };
             poll();
 
+            $scope.$watch('nofificationCount', function(newVal, oldVal) {
+                if(newVal!=oldVal){
+                    console.log("message count changes");
+                    getFirstFiveNotification();
+                }
+            });
+
             $scope.query = function (pageLink) {
                 DataService.get(pageLink).success(function (data) {
                     var documentLinks = data.results.documentLinks;
@@ -69,8 +81,8 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
                         var item = {};
 
                         item["id"] = UtilService.getDocumentLinkId(linkString);
-                        if(document.message&&document.message.length>50){
-                            item["message"] = document.message.substring(0,50)+"...";
+                        if(document.message&&document.message.length>40){
+                            item["message"] = document.message.substring(0,40)+"...";
                         }
                         else{
                             item["message"] = document.message;
