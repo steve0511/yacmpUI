@@ -54,17 +54,38 @@
 
                             <div class="row">
                                 <div class="form-group col-md-9">
-                                   <label>Blueprint Content</label>
-                                   <!--<input name="blueprint" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."/>-->
-                                   <textarea name="blueprint" ng-trim="false" rows="20" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."></textarea>
-                                    <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
-                                       blueprint content is empty
-                                    </span>
+                                    <label>Blueprint</label>
+                                    <!--<input name="blueprint" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."/>-->
+                                    <div class="row">
+                                        <div class="col-lg-3 col-xs-6">
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Node Templates</th>
+                                                    </tr>
+                                                    <tr ng-repeat="tp in templates">
+                                                        <td>
+                                                            <a>
+                                                                {{tp.name}}
+                                                                <i ng-click="addTemplate(tp.content)" class="fa fa-arrow-circle-right"/>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-6">
+                                            <textarea name="blueprint" ng-trim="false" rows="20" class="form-control" ng-model="blueprint.blueprint"></textarea>
+                                            <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
+                                                blueprint content is empty
+                                            </span>
+                                        </div>
 
-                                    <div class="pull-right form-save">
-                                       <button type="button" class="btn btn-primary" ng-click="back()">Back</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                       <button ng-if="!isedit" type="submit" class="btn btn-primary" ng-click="submit(blueprint)" ng-disabled="bluePrintForm.$invalid">Submit</button>
-                                       <button ng-if="isedit" type="submit" class="btn btn-primary" ng-click="save(blueprint)" ng-disabled="bluePrintForm.$invalid">Save</button>
+                                        <div class="pull-right form-save">
+                                            <button type="button" class="btn btn-primary" ng-click="back()">Back</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button ng-if="!isedit" type="submit" class="btn btn-primary" ng-click="submit(blueprint)" ng-disabled="bluePrintForm.$invalid">Submit</button>
+                                            <button ng-if="isedit" type="submit" class="btn btn-primary" ng-click="save(blueprint)" ng-disabled="bluePrintForm.$invalid">Save</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

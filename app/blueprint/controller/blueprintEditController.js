@@ -1,9 +1,6 @@
 /*
  * Copyright (c) 2015 VMware, Inc. All Rights Reserved.
  */
-/*
- * Copyright (c) 2015 VMware, Inc. All Rights Reserved.
- */
 
 'use strict';
 
@@ -16,11 +13,17 @@ angular.module('yacmpApp').controller('BluePrintEditController', ['$scope', 'Dat
 
             var id = $routeParams.id;
 
-            DataService.get(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id).success(function(data, status){
+            DataService.get(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id).success(function (data, status) {
                 $scope.blueprint = data;
             }).error(function (data, status, headers, config) {
                 $scope.errorMessage = "Couldn't load the blueprint, error # " + status;
             });
+
+            $scope.templates = BlueprintTemplates.templates;
+
+            $scope.addTemplate = function (templateContent) {
+                $scope.blueprint.blueprint += templateContent;
+            };
 
             $scope.save = function (blueprint) {
                 DataService.put(CONSTANTS.SERVICE_BLUEPRINT.PATH+"/"+id, blueprint).success(function (data, status) {
@@ -30,10 +33,9 @@ angular.module('yacmpApp').controller('BluePrintEditController', ['$scope', 'Dat
                 });
             }
 
-            $scope.back = function(){
+            $scope.back = function() {
                 $location.path('/blueprint');
             };
-
         }
     ]
 );
