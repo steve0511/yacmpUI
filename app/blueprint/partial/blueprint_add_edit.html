@@ -32,9 +32,9 @@
                                <div class="form-group col-md-3">
                                   <label>Deployment Shutdown Duration</label>
                                  <!-- <input name="name" class="form-control" ng-model="blueprint.deploymentShutdownDuration" required placeholder="please input shutdown duration...."/>-->
-                                   <input type="number" class="form-control" name="deploymentShutdownDuration" ng-model="blueprint.deploymentShutdownDuration"
+                                   <input type="number" class="form-control" name="leaseTime" ng-model="blueprint.leaseTime"
                                           min="0" required>
-                                   <span class="error" ng-show="bluePrintForm.deploymentShutdownDuration.$invalid">
+                                   <span class="error" ng-show="bluePrintForm.leaseTime.$invalid">
                                        shutdown duration is not valid
                                    </span>
                                </div>
@@ -44,9 +44,9 @@
                                <div class="form-group col-md-3">
                                   <label>Deployment TearDown Duration</label>
                                   <!--<input name="name" class="form-control" ng-model="blueprint.deploymentTeardownDuration" required placeholder="please input teardown duration...."/>-->
-                                   <input type="number" class="form-control" name="deploymentTeardownDuration" ng-model="blueprint.deploymentTeardownDuration"
+                                   <input type="number" class="form-control" name="archiveTime" ng-model="blueprint.archiveTime"
                                           min="0" required>
-                                   <span class="error" ng-show="bluePrintForm.deploymentTeardownDuration.$invalid">
+                                   <span class="error" ng-show="bluePrintForm.archiveTime.$invalid">
                                        teardown duration is not valid
                                    </span>
                                 </div>

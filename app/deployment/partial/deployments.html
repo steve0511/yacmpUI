@@ -38,7 +38,7 @@
                             <!-- CONTENT -->
                             <tbody>
                             <tr ng-repeat="c in deployments">
-                                <td>{{c.name}}</td>
+                                <td><a ng-click="view(c.id)">{{c.name}}</a></td>
                                 <td>{{c.status}}</td>
                                 <td>{{c.provisionTime}}</td>
                                 <td>

@@ -1,3 +1,63 @@
-/*
- * Copyright (c) 2015 VMware, Inc. All Rights Reserved.
- */
+<div ng-controller="DeploymentDetailController" class="container-fluid">
+
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                View Deployment
+                <small>view Deployment details</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#/deployment"><i class="fa fa-dashboard"></i> Deployment </a></li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li ng-class="{'active' : activeTab == 1}"><a href="" ng-click="setActiveTab(1)" role="tab" data-toggle="tab">Inputs & Outputs</a></li>
+                        <li ng-class="{'active' : activeTab == 2}"><a href="" ng-click="setActiveTab(2)" role="tab" data-toggle="tab">Nodes</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div ng-class="{'tab-pane active': activeTab === 1, 'tab-pane' : activeTab !== 1}">
+                            <div class="box-body table-responsive">
+                                <div class="col-md-6">
+                                    <div class="box box-solid">
+                                        <div class="box-header">
+                                            <h3 class="box-title">Inputs</h3>
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <dl ng-repeat="(key,value) in detail.inputs">
+                                                <dt>{{key}}</dt>
+                                                <dd>{{value}}</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="box-header">
+                                            <h3 class="box-title">Outputs</h3>
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <dl ng-repeat="(key,value) in detail.outputs">
+                                                <dt>{{key}}</dt>
+                                                <dd>{{value}}</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-class="{'tab-pane active': activeTab === 2, 'tab-pane' : activeTab !== 2}">Panel 2 Content</div>
+                    </div>
+
+
+                    <div class="box-footer pull-left">
+                        <a href="#/Deployment">Back</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </aside>
+</div>
