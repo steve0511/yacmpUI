@@ -42,6 +42,12 @@ var CONSTANTS = {
          'DOCUMENTKIND': "com:vmware:yacmp:core:notification:Notification"
     },
 
+    'SERVICE_DEPLOYMENT' :{
+        'ID' : "DEPLOYMENT",
+        'PATH': "/yacmp/deployment",
+        'DOCUMENTKIND': "com:vmware:yacmp:core:deployment:DeploymentService:Deployment"
+    },
+
     'SERVICE_TASK' :{
         'ID' : "TASK",
         'PATH': "/yacmp/tasks",

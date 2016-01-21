@@ -1,0 +1,31 @@
+<div class="col-md12">
+
+    <div class="alert alert-danger alertmsg" ng-show="errorMessage" ng-cloak>
+        {{errorMessage}}
+    </div>
+
+    <section class="content-header">
+        <h2>
+            Workflow Parameters
+        </h2>
+    </section>
+
+    <div class="box box-primary">
+        <form role="form" name="workflowForm">
+            <div class="box-body">
+                <div ng-repeat="(key,value) in params">
+                <div class="form-group">
+                    <label>{{key}}</label>
+                    <input name={{key}} class="form-control" placeholder="{{value.description}}" ng-model="workflow[key]"/>
+                </div>
+                </div>
+
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" ng-click="submit()" ng-disabled="workflowForm.$invalid">Confirm</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
