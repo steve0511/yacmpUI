@@ -47,7 +47,7 @@
                                             Execute Workflow <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li ng-repeat="operaton in operationsCollection[$index] track by $index">
+                                            <li ng-repeat="operaton in operationsCollection[c.id]">
                                                 <a ng-click="execute(operaton.name, operaton.parameter, c.id)">
                                                     <i class="ion ion-ios7-people info">{{operaton.name}}</i>
                                                 </a>

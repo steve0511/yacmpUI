@@ -99,10 +99,13 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
                 $scope.query(pageUrl);
             };
 
-            $scope.operationsCollection = [];
+            $scope.operationsCollection = {};
 
 
             $scope.loadOperation = function(id){
+                 if($scope.operationsCollection[id]){
+                     return;
+                 }
                  var spec = {
                     "kind": "com:vmware:yacmp:core:deployment:RefreshDeploymentDetailRequest"
                  };
@@ -114,7 +117,7 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
                          operation["parameter"] = data.day2Operations[o].parameters;
                          operations.push(operation);
                      }
-                     $scope.operationsCollection.push(operations);
+                     $scope.operationsCollection[id] = operations;
                  }).error(function (data, status, headers, config) {
                      $scope.errorMessage = "Couldn't load the detail and operation of deployments, error # " + status;
                  });
@@ -129,7 +132,6 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
                      scope: $scope,
                      controller: ['$scope', function($scope) {
                          var jsonObj = JSON.parse(parameter);
-                         console.log(jsonObj);
                          $scope.params = jsonObj;
                          for(var key in jsonObj){
                              var attrName = key;

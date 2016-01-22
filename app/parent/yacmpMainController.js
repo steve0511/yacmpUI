@@ -15,9 +15,9 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
                 $scope.uiBase = CONSTANTS.UI_CUSTOM_BASE;
             });
 
-            $scope.notifications = [];
-
             $scope.nofificationCount = 0;
+
+            $scope.notifications = [];
 
             //mock userid, should be fetch from cookie after login
             //var userId = "3ecefd79-e8d6-4aa6-8aec-ff173abcc25c";
@@ -26,7 +26,6 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
             var query_spec = DataService.queryNotificationSpec(5);
 
             var getFirstFiveNotification = function(){
-                $scope.notifications = [];
                 DataService.post(CONSTANTS.SERVICE_QUERY.PATH, query_spec).success(function (data, status) {
                     $scope.nextPageLink = data.results.nextPageLink;
 
@@ -70,6 +69,7 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
 
             $scope.query = function (pageLink) {
                 DataService.get(pageLink).success(function (data) {
+                    $scope.notifications = [];
                     var documentLinks = data.results.documentLinks;
                     var documentObjs = data.results.documents;
 
