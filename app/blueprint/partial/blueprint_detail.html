@@ -27,10 +27,12 @@
                                     <dl>
                                         <dt>Blueprint Name</dt>
                                         <dd>{{blueprint.name}}</dd>
-                                        <dt>deployment Shutdown Duration</dt>
-                                        <dd>{{blueprint.deploymentShutdownDuration}}</dd>
-                                        <dt>deployment Teardown Duration</dt>
-                                        <dd>{{blueprint.deploymentTeardownDuration}}</dd>
+                                        <dt>Description</dt>
+                                        <dd>{{blueprint.description}}</dd>
+                                        <dt>Lease Time (mins)</dt>
+                                        <dd>{{blueprint.leaseTime}}</dd>
+                                        <dt>Archive Time (mins)</dt>
+                                        <dd>{{blueprint.archiveTime}}</dd>
                                         <dt>Blueprint Content</dt>
                                         <textarea name="blueprint" ng-trim="false" rows="20" class="form-control noresize" id="bpdetailcontent"  disabled="disabled">{{blueprint.blueprint}}</textarea>
                                     </dl>
