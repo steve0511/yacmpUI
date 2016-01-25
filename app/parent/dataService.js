@@ -46,6 +46,67 @@ angular.module('yacmpApp').service('DataService', ['$http', 'UtilService',
             return spec;
         };
 
+        this.queryDeploymentTotalDocument = function(){
+            var spec = {
+                "taskInfo": {
+                    "isDirect": true
+                },
+                "querySpec": {
+                    "query": {
+                        "booleanClauses": [
+                            {
+                                "term": {
+                                    "matchValue": CONSTANTS.SERVICE_DEPLOYMENT.DOCUMENTKIND,
+                                    "propertyName": "documentKind"
+                                }
+                            },
+                            {
+                                "term": {
+                                    "matchValue": "TORN_DOWN",
+                                    "propertyName": "status"
+                                },
+                                "occurance": "MUST_NOT_OCCUR"
+                            }
+                        ]
+                    }
+                }
+            }
+            return spec;
+        };
+
+        this.queryDeploymentSpec = function(numbers){
+            var spec = {
+                "taskInfo": {
+                    "isDirect": true
+                },
+
+                "querySpec": {
+                    "options": [
+                        "EXPAND_CONTENT"
+                    ],
+                    "query": {
+                        "booleanClauses": [
+                            {
+                                "term": {
+                                    "matchValue": CONSTANTS.SERVICE_DEPLOYMENT.DOCUMENTKIND,
+                                    "propertyName": "documentKind"
+                                }
+                            },
+                            {
+                                "term": {
+                                    "matchValue": "TORN_DOWN",
+                                    "propertyName": "status"
+                                },
+                                "occurance": "MUST_NOT_OCCUR"
+                            }
+                        ]
+                    },
+                    "resultLimit": numbers
+                }
+            }
+            return spec;
+        };
+
         this.queryNotificationSpec = function(numbers){
             var spec = {
                 "taskInfo": {

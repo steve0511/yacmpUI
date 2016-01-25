@@ -19,9 +19,6 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
 
             $scope.notifications = [];
 
-            //mock userid, should be fetch from cookie after login
-            //var userId = "3ecefd79-e8d6-4aa6-8aec-ff173abcc25c";
-
             var query_spec_total = DataService.querySpecTotalDocument(CONSTANTS.SERVICE_NOTIFICATION.DOCUMENTKIND);
             var query_spec = DataService.queryNotificationSpec(5);
 
@@ -56,7 +53,7 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
                 $timeout(function() {
                     getNotificationCount();
                     poll();
-                }, 10000);
+                }, 120000);
             };
             poll();
 

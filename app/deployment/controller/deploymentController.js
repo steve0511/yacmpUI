@@ -15,7 +15,7 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
 
             $scope.errorMessage = null;
 
-            $scope.table_columns = ['name', 'status', 'provisionTime', 'day2Operations', 'action'];
+            $scope.table_columns = ['name', 'status', 'provisionTime', 'day2Operations'];
 
             $scope.itemsByPage = CONSTANTS.DEFAULT_PAGE_LIMIT;
 
@@ -54,8 +54,8 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
                 });
             }
 
-            var query_spec_total = DataService.querySpecTotalDocument(CONSTANTS.SERVICE_DEPLOYMENT.DOCUMENTKIND);
-            var query_spec = DataService.querySpec(CONSTANTS.SERVICE_DEPLOYMENT.DOCUMENTKIND, CONSTANTS.DEFAULT_PAGE_LIMIT);
+            var query_spec_total = DataService.queryDeploymentTotalDocument();
+            var query_spec = DataService.queryDeploymentSpec(CONSTANTS.DEFAULT_PAGE_LIMIT);
 
             $scope.load_data = function (tableState) {
                 $scope.isLoading = true;
