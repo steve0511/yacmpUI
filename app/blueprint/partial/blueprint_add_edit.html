@@ -58,7 +58,25 @@
                                     <!--<input name="blueprint" class="form-control" ng-model="blueprint.blueprint" required placeholder="please input blueprint content...."/>-->
                                     <div class="row">
                                         <div class="col-lg-3 col-xs-6">
-                                            <div class="box-group">
+                                            <div ng-if="!isEditYaml">
+                                                <div style="padding-bottom: 6px">
+                                                    <a class="btn btn-default">Add</a>
+                                                    <a class="btn btn-default">Edit</a>
+                                                    <a class="btn btn-default">Delete</a>
+                                                </div>
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                        <tr ng-repeat="file in blueprintFiles">
+                                                            <td ng-style="file.selected ? { 'background-color': '#ddd' } : {}" ng-click="onFileSelect(file)">
+                                                                <a>
+                                                                    {{file.path}}
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="box-group" ng-if="isEditYaml">
                                                 <div class="panel box box-danger">
                                                     <div class="box-header with-border">
                                                         <h4 class="box-title">
@@ -98,7 +116,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-9 col-xs-6">
-                                            <textarea name="blueprint" ng-trim="false" rows="20" class="form-control" ng-model="blueprint.blueprint"></textarea>
+                                            <textarea name="blueprint" ng-trim="false" rows="20" class="form-control" ng-model="selectedFile.content" ng-readonly="!isEditYaml"></textarea>
                                             <span class="error" ng-show="bluePrintForm.blueprint.$error.required">
                                                 blueprint content is empty
                                             </span>
