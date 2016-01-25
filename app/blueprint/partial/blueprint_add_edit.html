@@ -60,17 +60,18 @@
                                         <div class="col-lg-3 col-xs-6">
                                             <div ng-if="!isEditYaml">
                                                 <div style="padding-bottom: 6px">
-                                                    <a class="btn btn-default">Add</a>
-                                                    <a class="btn btn-default">Edit</a>
-                                                    <a class="btn btn-default">Delete</a>
+                                                    <a class="btn btn-default" ng-click="onAdd()">Add</a>
+                                                    <a class="btn btn-default" ng-click="onEdit()">Edit</a>
+                                                    <a class="btn btn-default" ng-click="onDelete()">Delete</a>
                                                 </div>
                                                 <table class="table table-hover">
                                                     <tbody>
                                                         <tr ng-repeat="file in blueprintFiles">
-                                                            <td ng-style="file.selected ? { 'background-color': '#ddd' } : {}" ng-click="onFileSelect(file)">
-                                                                <a>
+                                                            <td ng-style="file.selected ? { 'background-color': '#ddd' } : {}" ng-click="onFileSelect(file)" ng-dblclick="onEditName()">
+                                                                <a ng-if="!file.editing">
                                                                     {{file.path}}
                                                                 </a>
+                                                                <input ng-if="file.editing" ng-model="file.path" ng-blur="onCompleteEditName()"/>
                                                             </td>
                                                         </tr>
                                                     </tbody>

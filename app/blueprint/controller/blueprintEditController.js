@@ -32,9 +32,38 @@ angular.module('yacmpApp').controller('BluePrintEditController', ['$scope', 'Dat
             $scope.onFileSelect = function (file) {
                 if ($scope.selectedFile != null) {
                     $scope.selectedFile.selected = false;
+                    $scope.selectedFile.editing = false;
                 }
                 file.selected = true;
                 $scope.selectedFile = file;
+            };
+
+            $scope.onAdd = function () {
+                var newFile = {
+                    path: 'My File',
+                    selected: true,
+                    editing: true,
+                    content: BlueprintTemplates.blueprintTemplate
+                };
+                $scope.onFileSelect(newFile);
+                $scope.blueprintFiles.unshift($scope.selectedFile);
+            };
+
+            $scope.onEditName = function () {
+                $scope.selectedFile.editing = true;
+            };
+
+            $scope.onCompleteEditName = function () {
+                $scope.selectedFile.editing = false;
+            };
+
+            $scope.onDelete = function () {
+                var index = $scope.blueprintFiles.indexOf($scope.selectedFile);
+                if (index != -1) {
+                    $scope.selectedFile = null;
+
+                    $scope.blueprintFiles.splice(index, 1);
+                }
             };
 
             $scope.addTemplate = function (templateContent) {

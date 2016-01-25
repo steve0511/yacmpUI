@@ -18,24 +18,43 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
             };
 
             $scope.templates = BlueprintTemplates.templates;
-            $scope.blueprintFiles = [{
-                path: 'Test 1',
-                content: 'Test content 1'
-            }, {
-                path: 'Test 2',
-                content: 'Test content 2'
-            }, {
-                path: 'Test 3',
-                content: 'Test content 3'
-            }];
+            $scope.blueprintFiles = [];
             $scope.selectedFile = null;
 
             $scope.onFileSelect = function (file) {
                 if ($scope.selectedFile != null) {
                     $scope.selectedFile.selected = false;
+                    $scope.selectedFile.editing = false;
                 }
                 file.selected = true;
                 $scope.selectedFile = file;
+            };
+
+            $scope.onAdd = function () {
+                $scope.selectedFile = {
+                    path: 'My File',
+                    selected: true,
+                    editing: true,
+                    content: BlueprintTemplates.blueprintTemplate
+                };
+                $scope.blueprintFiles.unshift($scope.selectedFile);
+            };
+
+            $scope.onEditName = function () {
+                $scope.selectedFile.editing = true;
+            };
+
+            $scope.onCompleteEditName = function () {
+                $scope.selectedFile.editing = false;
+            };
+
+            $scope.onDelete = function () {
+                var index = $scope.blueprintFiles.indexOf($scope.selectedFile);
+                if (index != -1) {
+                    $scope.selectedFile = null;
+
+                    $scope.blueprintFiles.splice(index, 1);
+                }
             };
 
             $scope.addTemplate = function (templateContent) {
