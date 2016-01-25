@@ -8,6 +8,8 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
         '$routeParams', '$timeout','$location',
 
         function ($scope, DataService, UtilService, BlueprintTemplates, $routeParams, $timeout, $location) {
+            $scope.templateType = 'Openstack';
+
             $scope.blueprint = {
                 blueprint: BlueprintTemplates.blueprintTemplate,
                 deploymentShutdownDuration: 0,
@@ -18,6 +20,10 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
 
             $scope.addTemplate = function (templateContent) {
                 $scope.blueprint.blueprint += templateContent;
+            };
+
+            $scope.setTemplateType = function (templateType) {
+                $scope.templateType = templateType;
             };
 
             $scope.submit = function (blueprint) {

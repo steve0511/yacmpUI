@@ -8,8 +8,9 @@ angular.module('yacmpApp').controller('BluePrintEditController', ['$scope', 'Dat
         '$routeParams', '$timeout','$location',
 
         function ($scope, DataService, UtilService, $routeParams, $timeout, $location) {
-
             $scope.isedit = true;
+
+            $scope.templateType = 'Openstack';
 
             var id = $routeParams.id;
 
@@ -23,6 +24,10 @@ angular.module('yacmpApp').controller('BluePrintEditController', ['$scope', 'Dat
 
             $scope.addTemplate = function (templateContent) {
                 $scope.blueprint.blueprint += templateContent;
+            };
+
+            $scope.setTemplateType = function (templateType) {
+                $scope.templateType = templateType;
             };
 
             $scope.save = function (blueprint) {
