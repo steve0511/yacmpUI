@@ -38,6 +38,9 @@ yacmpApp.config(['$routeProvider', function ($routeProvider) {
         when("/deployment/:id", {
             templateUrl: 'deployment/partial/deployment_detail.html'
         }).
+        when("/deployment/:id/nodeinfo", {
+            templateUrl: 'deployment/partial/deployment_nodedetail.html'
+        }).
 	    when("/admin/users", {
             templateUrl: 'admin/partial/admin_users.html',
         }).

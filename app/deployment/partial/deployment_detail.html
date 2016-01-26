@@ -49,12 +49,51 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-class="{'tab-pane active': activeTab === 2, 'tab-pane' : activeTab !== 2}">Panel 2 Content</div>
+                        <div ng-class="{'tab-pane active': activeTab === 2, 'tab-pane' : activeTab !== 2}">
+                            <div class="tab-content">
+                            <div class="box-body table-responsive">
+                                <div class="col-md-12">
+                                    <div class="box box-solid">
+                                        <div class="box-header">
+                                            <h3 class="box-title">Nodes</h3>
+                                        </div>
+                                        <div class="box-body table-responsive tablecontent nodescontent">
+                                            <table class="table table-bordered table-hover table-striped"
+                                                   st-table="items">
+                                                <thead>
+                                                <tr>
+                                                    <th ng-repeat="col in table_columns">{{col}}</th>
+                                                </tr>
+                                                </thead>
+
+                                                <!-- CONTENT -->
+                                                <tbody>
+                                                <tr ng-repeat="n in nodelist">
+                                                    <td>{{n.name}}</td>
+                                                    <td>{{n.type}}</td>
+                                                    <td>{{n.numberOfInstances}}</td>
+                                                    <td>{{n.containedin}}</td>
+                                                    <td>{{n.connectedto}}</td>
+                                                    <td>
+
+                                                    </td>
+                                                    <td>
+                                                        <i class="fa fa-search" style="color: #53bbf1;" ng-click="viewNodeDetails(n)"></i>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
 
 
                     <div class="box-footer pull-left">
-                        <a href="#/Deployment">Back</a>
+                        <a href="#/deployment">Back</a>
                     </div>
                 </div>
             </div>
