@@ -12,13 +12,13 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
             $scope.isEditYaml = false;
 
             $scope.blueprint = {
-                blueprint: BlueprintTemplates.blueprintTemplate,
+                blueprintFiles: [],
                 deploymentShutdownDuration: 0,
                 deploymentTeardownDuration: 0
             };
 
             $scope.templates = BlueprintTemplates.templates;
-            $scope.blueprintFiles = [];
+            $scope.blueprintFiles = $scope.blueprint.blueprintFiles;
             $scope.selectedFile = null;
             $scope.editorContents = '';
 
