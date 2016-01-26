@@ -89,7 +89,7 @@
                                                     <div class="panel-collapse collapse in" ng-if="templateType == 'Openstack'">
                                                         <table class="table table-striped">
                                                             <tbody>
-                                                                <tr ng-repeat="tp in templates">
+                                                                <tr ng-repeat="tp in templates.openstack">
                                                                     <td>
                                                                         <a>
                                                                             {{tp.name}}
@@ -110,8 +110,18 @@
                                                         </h4>
                                                     </div>
                                                     <div class="panel-collapse collapse in" ng-if="templateType == 'vSphere'">
-                                                        <div class="box-body">
-                                                        </div>
+                                                        <table class="table table-striped in">
+                                                            <tbody>
+                                                                <tr ng-repeat="tp in templates.vSphere">
+                                                                    <td>
+                                                                        <a>
+                                                                            {{tp.name}}
+                                                                            <i ng-click="addTemplate(tp.content)" class="fa fa-arrow-circle-right"/>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
