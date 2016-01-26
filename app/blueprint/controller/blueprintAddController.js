@@ -20,6 +20,7 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
             $scope.templates = BlueprintTemplates.templates;
             $scope.blueprintFiles = [];
             $scope.selectedFile = null;
+            $scope.editorContents = '';
 
             $scope.onFileSelect = function (file) {
                 if ($scope.selectedFile != null) {
@@ -28,6 +29,7 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
                 }
                 file.selected = true;
                 $scope.selectedFile = file;
+                $scope.editorContents = $scope.selectedFile.content;
             };
 
             $scope.onAdd = function () {
@@ -40,12 +42,26 @@ angular.module('yacmpApp').controller('BluePrintAddController', ['$scope', 'Data
                 $scope.blueprintFiles.unshift($scope.selectedFile);
             };
 
+            $scope.onEdit = function () {
+                $scope.isEditYaml = true;
+            };
+
             $scope.onEditName = function () {
                 $scope.selectedFile.editing = true;
             };
 
             $scope.onCompleteEditName = function () {
                 $scope.selectedFile.editing = false;
+            };
+
+            $scope.completeEditYaml = function () {
+                $scope.isEditYaml = false;
+                $scope.selectedFile.content = $scope.editorContents;
+            };
+
+            $scope.cancelEditYaml = function () {
+                $scope.isEditYaml = false;
+                $scope.editorContents = $scope.selectedFile.content;
             };
 
             $scope.onDelete = function () {
