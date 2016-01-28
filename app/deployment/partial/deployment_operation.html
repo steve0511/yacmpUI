@@ -1,0 +1,24 @@
+<div class="col-md12">
+
+    <div class="alert alert-danger alertmsg" ng-show="errorMessage" ng-cloak>
+        {{errorMessage}}
+    </div>
+
+    <section class="content-header">
+        <h2>
+            Operations
+        </h2>
+    </section>
+
+    <div class="box box-primary">
+        <form role="form" name="workflowForm">
+            <div class="box-body">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" ng-click="submit()" ng-disabled="workflowForm.$invalid">Confirm</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+

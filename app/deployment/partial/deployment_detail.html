@@ -25,7 +25,7 @@
                     <div class="tab-content">
                         <div ng-class="{'tab-pane active': activeTab === 1, 'tab-pane' : activeTab !== 1}">
                             <div class="box-body table-responsive">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="box box-solid">
                                         <div class="box-header">
                                             <h3 class="box-title">Inputs</h3>
@@ -75,7 +75,18 @@
                                                     <td>{{n.containedin}}</td>
                                                     <td>{{n.connectedto}}</td>
                                                     <td>
-
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+                                                                Operation <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu" role="menu">
+                                                                <li ng-repeat="(key,value) in n.operation">
+                                                                    <a ng-click="executeOperation(n.name, key, deploymentid)">
+                                                                        <i class="ion ion-ios7-people info">{{key}}</i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <i class="fa fa-search" style="color: #53bbf1;" ng-click="viewNodeDetails(n)"></i>

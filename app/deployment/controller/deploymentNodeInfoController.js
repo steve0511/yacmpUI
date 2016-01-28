@@ -26,7 +26,6 @@ angular.module('yacmpApp').controller('DeploymentNodeInfoController', ['$scope',
             console.log($scope.nodeinfo);
 
 
-
         }
     ]
 );

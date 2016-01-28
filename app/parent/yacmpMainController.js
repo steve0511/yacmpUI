@@ -59,7 +59,6 @@ angular.module('yacmpApp').controller('YacmpMainController', ['$scope', '$routeP
 
             $scope.$watch('nofificationCount', function(newVal, oldVal) {
                 if(newVal!=oldVal){
-                    console.log("message count changes");
                     getFirstFiveNotification();
                 }
             });

@@ -17,6 +17,8 @@ angular.module('yacmpApp').controller('DeploymentDetailController', ['$scope', '
 
             var id = $routeParams.id;
 
+            $scope.deploymentid = id;
+
             $scope.activeTab = 1;
 
             $scope.setActiveTab = function(tabToSet) {
@@ -24,6 +26,37 @@ angular.module('yacmpApp').controller('DeploymentDetailController', ['$scope', '
             }
 
             $scope.nodelist = [];
+
+            $scope.executeOperation = function(node_id, operation, deploymentid) {
+                ngDialog.open({
+                    template: 'deployment/partial/deployment_operation.html',
+                    className: 'ngdialog-theme-plain',
+                    scope: $scope,
+                    controller: ['$scope', function($scope) {
+                        $scope.submit= function (){
+                            var param = {
+                                "operation_kwargs" : {},
+                                "node_ids": "["+node_id+"]",
+                                "node_instance_ids": [],
+                                "run_by_dependency_order": false,
+                                "operation": operation,
+                                "allow_kwargs_override": null,
+                                "type_names": []
+                            };
+                            var operationSpec = {
+                                "operationName" : "execute_operations",
+                                "operationParamJason" : JSON.stringify(param)
+                            };
+                            DataService.patch(CONSTANTS.SERVICE_DEPLOYMENT.PATH+"/"+deploymentid, operationSpec).success(function (data) {
+                                ngDialog.close();
+                            }).error(function (data, status, headers, config) {
+                                $scope.errorMessage = "Couldn't load the detail and operation of deployments, error # " + status;
+                            });
+
+                        }
+                    }]
+                });
+            }
 
             DataService.patch(CONSTANTS.SERVICE_DEPLOYMENT.PATH+"/"+id, spec).success(function (data) {
                 var detail = data.targetDetails;
@@ -35,6 +68,7 @@ angular.module('yacmpApp').controller('DeploymentDetailController', ['$scope', '
                     node["name"] = detailObj.nodes[index].id;
                     node["type"] = detailObj.nodes[index].type;
                     node["numberOfInstances"]= detailObj.nodes[index].number_of_instances;
+                    node["operation"] = detailObj.nodes[index].operations;
                     var containedin = "";
                     var connectedto = "";
                     if(detailObj.nodes[index].relationships&&detailObj.nodes[index].relationships.length>0){

@@ -20,6 +20,21 @@
                 </div>
                 </div>
 
+                <label>Enable Schedule: <input type="checkbox" ng-model="scheduleEnabled"></label><br/>
+
+                <h4>Scheduled:</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="input-group">
+                            <input type="text" ng-disabled="!scheduleEnabled" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="Close" />
+                    <span class="input-group-btn">
+                       <button type="button" class="btn btn-default" ng-click="open()" ng-disabled="!scheduleEnabled"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                        </p>
+                        <uib-timepicker ng-model="time" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" ng-disabled="!scheduleEnabled"></uib-timepicker>
+                    </div>
+                </div>
+
                 <div class="pull-right">
                     <button type="submit" class="btn btn-primary" ng-click="submit()" ng-disabled="workflowForm.$invalid">Confirm</button>
                 </div>

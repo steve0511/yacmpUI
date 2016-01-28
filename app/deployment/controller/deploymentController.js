@@ -101,7 +101,6 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
 
             $scope.operationsCollection = {};
 
-
             $scope.loadOperation = function(id){
                  if($scope.operationsCollection[id]){
                      return;
@@ -131,6 +130,7 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
                      className: 'ngdialog-theme-plain',
                      scope: $scope,
                      controller: ['$scope', function($scope) {
+                         $scope.scheduleEnabled = false;
                          var jsonObj = JSON.parse(parameter);
                          $scope.params = jsonObj;
                          for(var key in jsonObj){
@@ -139,17 +139,63 @@ angular.module('yacmpApp').controller('DeploymentController', ['$scope', 'DataSe
                              $scope.workflow[attrName] = attrValue.default;
                          }
                          $scope.submit= function (){
-                             var day2opertaionSpec = {
-                                 "operationName" : operation,
+                             $scope.dt.setHours($scope.time.getHours());
+                             $scope.dt.setMinutes($scope.time.getMinutes());
+                             var formattedDate = null;
+                             if($scope.scheduleEnabled){
+                                 var formattedDate = moment($scope.dt).format('YYYY-MM-DD HH:mm');
+                             }
+                             var day2operationSpec = {
+                                 "scheduledTime":formattedDate,
+                                 "operationName": operation,
                                  "operationParamJason" : JSON.stringify($scope.workflow)
                              };
-                             DataService.patch(CONSTANTS.SERVICE_DEPLOYMENT.PATH+"/"+id, day2opertaionSpec).success(function (data) {
+                             DataService.patch(CONSTANTS.SERVICE_DEPLOYMENT.PATH+"/"+id, day2operationSpec).success(function (data) {
                                  ngDialog.close();
                              }).error(function (data, status, headers, config) {
                                  $scope.errorMessage = "Couldn't load the detail and operation of deployments, error # " + status;
                              });
 
-                         }
+                         };
+                         $scope.today = function() {
+                             $scope.dt = new Date();
+                         };
+                         $scope.today();
+
+                         $scope.clear = function() {
+                             $scope.dt = null;
+                         };
+
+                         $scope.toggleMin = function() {
+                             $scope.minDate = $scope.minDate ? null : new Date();
+                         };
+
+                         $scope.toggleMin();
+                         $scope.maxDate = new Date(2020, 5, 22);
+
+                         $scope.open = function() {
+                             $scope.popup.opened = true;
+                         };
+
+                         $scope.setDate = function(year, month, day) {
+                             $scope.dt = new Date(year, month, day);
+                         };
+
+                         $scope.dateOptions = {
+                             formatYear: 'yy',
+                             startingDay: 1
+                         };
+
+                         $scope.popup = {
+                             opened: false
+                         };
+
+                         $scope.time = new Date();
+
+                         $scope.hstep = 1;
+                         $scope.mstep = 1;
+
+                         $scope.ismeridian = true;
                      }]
                 });
 
