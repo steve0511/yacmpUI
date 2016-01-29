@@ -44,7 +44,7 @@ angular.module('yacmpApp').controller('DeploymentDetailController', ['$scope', '
                                 "type_names": []
                             };
                             var operationSpec = {
-                                "operationName" : "execute_operations",
+                                "operationName" : "execute_operation",
                                 "operationParamJason" : JSON.stringify(param)
                             };
                             DataService.patch(CONSTANTS.SERVICE_DEPLOYMENT.PATH+"/"+deploymentid, operationSpec).success(function (data) {
